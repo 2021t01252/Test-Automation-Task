@@ -7,9 +7,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.FormPage;
+
 import java.time.Duration;
 
-public class TC001_ValidFormTest {
+public class TC002_LeaveMandatoryTest {
 
     WebDriver driver;
 
@@ -22,14 +23,14 @@ public class TC001_ValidFormTest {
     }
 
     @Test
-    public void TC001(){
+    public void TC002(){
 
         FormPage formPage = new FormPage(driver);
-        formPage.sendFirstName("Chamod");
-        formPage.sendLastName("Lakshitha");
+        formPage.sendFirstName("");
+        formPage.sendLastName("");
         formPage.sendEmail("abc@gmail.com");
-        formPage.sendGenderMale();
-        formPage.sendMobileNo(1234567890);
+        //formPage.sendGenderMale();
+        //formPage.sendMobileNo(1234567890);
         formPage.sendDateofBirth("May","2001","11");
         formPage.sendSubjects();
         formPage.selectHobbies();
@@ -37,12 +38,13 @@ public class TC001_ValidFormTest {
         formPage.sendAdress("93/15 Piliyandala");
         formPage.sendState();
         formPage.sendCity();
-        formPage.submitForm();
-        Assert.assertTrue(formPage.sucessForm().contains("Thanks for submitting the form"));
+        boolean isFormSubmitted = formPage.sbmitFormMsg();
+        Assert.assertFalse(isFormSubmitted, "Test Passed: Form is not submitted when mandatory fields are left empty.");
+
     }
 
     @AfterMethod
     public void closeBrowser(){
-       //driver.quit();
+       //river.quit();
     }
 }

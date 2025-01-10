@@ -154,8 +154,9 @@ public class FormPage {
        // music.click();
     }
 
-    public void selectPicture(){
-        picture.sendKeys("C:\\Users\\USER\\Desktop\\Enhanzer QA Intern\\Basic Test Automation Task\\Test-Automation-Task\\Automation_Task\\src\\main\\resources\\cvPic.jpg");
+    public void selectPicture(String location){
+        picture.sendKeys(location);
+        //test ng
     }
 
     public void sendAdress(String adress){

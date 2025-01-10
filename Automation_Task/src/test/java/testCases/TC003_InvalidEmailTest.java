@@ -34,7 +34,7 @@ public class TC003_InvalidEmailTest {
         formPage.sendDateofBirth("May","2001","11");
         formPage.sendSubjects();
         formPage.selectHobbies();
-        formPage.selectPicture();
+        formPage.selectPicture("C:\\Users\\USER\\Desktop\\Enhanzer QA Intern\\Basic Test Automation Task\\Test-Automation-Task\\Automation_Task\\src\\main\\resources\\cvPic.jpg");
         formPage.sendAdress("93/15 Piliyandala");
         formPage.sendState();
         formPage.sendCity();

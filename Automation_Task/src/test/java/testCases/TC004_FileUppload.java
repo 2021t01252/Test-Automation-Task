@@ -7,9 +7,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.FormPage;
+import pages.FormPage;
 import java.time.Duration;
 
-public class TC001_ValidFormTest {
+public class TC004_FileUppload {
 
     WebDriver driver;
 
@@ -33,7 +34,26 @@ public class TC001_ValidFormTest {
         formPage.sendDateofBirth("May","2001","11");
         formPage.sendSubjects();
         formPage.selectHobbies();
-        formPage.selectPicture("C:\\Users\\USER\\Desktop\\Enhanzer QA Intern\\Basic Test Automation Task\\Test-Automation-Task\\Automation_Task\\src\\main\\resources\\cvPic.jpg");
+        formPage.selectPicture("\"C:\\Users\\USER\\Desktop\\Enhanzer QA Intern\\Basic Test Automation Task\\Test-Automation-Task\\Automation_Task\\src\\main\\resources\\cvPic.jpg\"");
+        formPage.sendAdress("93/15 Piliyandala");
+        formPage.sendState();
+        formPage.sendCity();
+        formPage.submitForm();
+        Assert.assertTrue(formPage.sucessForm().contains("Thanks for submitting the form"));
+    }
+
+    @Test
+    public void TC001InvalidFile(){
+        FormPage formPage = new FormPage(driver);
+        formPage.sendFirstName("Chamod");
+        formPage.sendLastName("Lakshitha");
+        formPage.sendEmail("abc@gmail.com");
+        formPage.sendGenderMale();
+        formPage.sendMobileNo(1234567890);
+        formPage.sendDateofBirth("May","2001","11");
+        formPage.sendSubjects();
+        formPage.selectHobbies();
+        formPage.selectPicture("\"C:\\Users\\USER\\Desktop\\Enhanzer QA Intern\\Basic Test Automation Task\\Test-Automation-Task\\Automation_Task\\src\\main\\resources\\Chamod Lakshitha Weththasinghe.pdf\"");
         formPage.sendAdress("93/15 Piliyandala");
         formPage.sendState();
         formPage.sendCity();
@@ -43,6 +63,6 @@ public class TC001_ValidFormTest {
 
     @AfterMethod
     public void closeBrowser(){
-       //driver.quit();
+        //driver.quit();
     }
 }

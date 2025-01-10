@@ -10,8 +10,7 @@ import pages.FormPage;
 
 import java.time.Duration;
 
-public class TC002_LeaveMandatoryTest {
-
+public class TC005_InvalidCharacters {
     WebDriver driver;
 
     @BeforeMethod
@@ -23,14 +22,14 @@ public class TC002_LeaveMandatoryTest {
     }
 
     @Test
-    public void TC002(){
+    public void TC001(){
 
         FormPage formPage = new FormPage(driver);
-        formPage.sendFirstName("");
-        formPage.sendLastName("");
-        formPage.sendEmail("abc@gmail.com");
-        //formPage.sendGenderMale();
-        //formPage.sendMobileNo(1234567890);
+        formPage.sendFirstName("<script>alert()</script>");
+        formPage.sendLastName("<script>alert()</script>");
+        formPage.sendEmail("<script>alert()</script>");
+        formPage.sendGenderMale();
+        formPage.sendMobileNo(1234567890);
         formPage.sendDateofBirth("May","2001","11");
         formPage.sendSubjects();
         formPage.selectHobbies();
@@ -38,13 +37,12 @@ public class TC002_LeaveMandatoryTest {
         formPage.sendAdress("93/15 Piliyandala");
         formPage.sendState();
         formPage.sendCity();
-        boolean isFormSubmitted = formPage.sbmitFormMsg();
-        Assert.assertFalse(isFormSubmitted, "Test Passed: Form is not submitted when mandatory fields are left empty.");
-
+        formPage.submitForm();
+        Assert.assertTrue(formPage.sucessForm().contains("Thanks for submitting the form"));
     }
 
     @AfterMethod
     public void closeBrowser(){
-       //river.quit();
+        //driver.quit();
     }
 }
